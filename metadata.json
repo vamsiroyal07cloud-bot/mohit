@@ -1,0 +1,5 @@
+{
+  "name": "EcoLearn: Gamified Environmental Education",
+  "description": "An interactive web platform that uses a video-quiz-game loop to teach users about environmental topics like soil pollution.",
+  "requestFramePermissions": []
+}
