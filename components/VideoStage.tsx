@@ -7,7 +7,7 @@ interface VideoStageProps {
 
 const VideoStage: React.FC<VideoStageProps> = ({ onComplete, videoUrl }) => {
   return (
-    <div className="text-center animate-fade-in">
+    <div className="text-center">
       <h2 className="text-2xl font-bold text-green-700 mb-4">Stage 1: Watch & Learn</h2>
       <p className="text-gray-600 mb-6 max-w-2xl mx-auto">Watch this video to understand the basics of this topic. Pay close attention to the facts presented!</p>
       

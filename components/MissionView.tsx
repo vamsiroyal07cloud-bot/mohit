@@ -53,7 +53,7 @@ const MissionView: React.FC<MissionViewProps> = ({ missionId, onMissionComplete,
   };
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 bg-white/70 backdrop-blur-md rounded-2xl shadow-lg animate-fade-in">
+    <div className="p-4 sm:p-6 lg:p-8 bg-white/70 backdrop-blur-md rounded-2xl shadow-lg">
       <header className="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
         <h1 className="text-3xl font-bold text-green-800">
           <span className="mr-3">{mission.icon}</span>
@@ -67,7 +67,7 @@ const MissionView: React.FC<MissionViewProps> = ({ missionId, onMissionComplete,
         </button>
       </header>
       
-      <div>
+      <div key={stage} className="animate-fade-in-up">
         {renderStage()}
       </div>
     </div>

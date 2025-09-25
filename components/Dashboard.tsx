@@ -33,7 +33,7 @@ const Header: React.FC<{ user: User; onNavigate: (view: View) => void }> = ({ us
 const MissionCard: React.FC<{ mission: typeof MISSIONS[0]; onStartMission: (id: string) => void }> = ({ mission, onStartMission }) => {
   const isDisabled = mission.disabled;
   return (
-    <div className={`bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'}`}>
+    <div className={`bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105 hover:shadow-xl'}`}>
       <div className="p-6">
         <div className="flex items-center space-x-4">
           <span className="text-4xl">{mission.icon}</span>
@@ -58,7 +58,7 @@ const MissionCard: React.FC<{ mission: typeof MISSIONS[0]; onStartMission: (id: 
 
 const Dashboard: React.FC<DashboardProps> = ({ user, onStartMission, onNavigate }) => {
   return (
-    <div className="animate-fade-in">
+    <div>
       <Header user={user} onNavigate={onNavigate} />
       <section>
         <h2 className="text-2xl font-bold text-green-800 mb-6">Available Missions</h2>

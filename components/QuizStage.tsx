@@ -39,22 +39,27 @@ const QuizStage: React.FC<QuizStageProps> = ({ onComplete }) => {
   };
 
   const getButtonClass = (option: string) => {
+    const baseClasses = 'w-full text-left p-4 rounded-lg border-2 transition-all duration-300';
     if (!isAnswered) {
-      return 'bg-white hover:bg-green-100';
+      return `${baseClasses} bg-white hover:bg-green-100 hover:border-green-300`;
     }
-    if (option === currentQuestion.correct) {
-      return 'bg-green-200 border-green-500';
+
+    const isCorrect = option === currentQuestion.correct;
+    const isSelected = option === selectedOption;
+
+    if (isCorrect) {
+      return `${baseClasses} bg-green-200 border-green-500 animate-pop`;
     }
-    if (option === selectedOption && option !== currentQuestion.correct) {
-      return 'bg-red-200 border-red-500';
+    if (isSelected && !isCorrect) {
+      return `${baseClasses} bg-red-200 border-red-500 animate-shake`;
     }
-    return 'bg-white opacity-60';
+    return `${baseClasses} bg-white opacity-60 border-gray-200`;
   };
 
   if (quizFinished) {
     const passed = score >= passingScore;
     return (
-      <div className="text-center p-8 bg-white rounded-lg shadow-md animate-fade-in">
+      <div className="text-center p-8 bg-white rounded-lg shadow-md animate-fade-in-up">
         <h2 className="text-2xl font-bold mb-4">{passed ? 'Congratulations! 🎉' : 'Nice Try! 🤔'}</h2>
         <p className={`text-xl font-semibold mb-4 ${passed ? 'text-green-600' : 'text-red-600'}`}>
           You scored {score} out of {questions.length}.
@@ -91,7 +96,7 @@ const QuizStage: React.FC<QuizStageProps> = ({ onComplete }) => {
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md animate-fade-in">
+    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-bold text-green-700 mb-2">Stage 2: Quiz Challenge</h2>
       <div className="flex justify-between items-baseline mb-6">
         <p className="text-gray-600">Question {currentQuestionIndex + 1} of {questions.length}</p>
@@ -106,7 +111,7 @@ const QuizStage: React.FC<QuizStageProps> = ({ onComplete }) => {
             key={option}
             onClick={() => handleAnswer(option)}
             disabled={isAnswered}
-            className={`w-full text-left p-4 rounded-lg border-2 transition-colors duration-200 ${getButtonClass(option)}`}
+            className={getButtonClass(option)}
           >
             {option}
           </button>
@@ -114,7 +119,7 @@ const QuizStage: React.FC<QuizStageProps> = ({ onComplete }) => {
       </div>
       
       {isAnswered && (
-        <div className="mt-6 text-right">
+        <div className="mt-6 text-right animate-fade-in-up">
           <button 
             onClick={handleNext}
             className="px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 transition duration-200"
